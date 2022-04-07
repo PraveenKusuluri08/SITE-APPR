@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-auth.js"></script>
+
+    <script>
+      var firebaseConfig = {
+        apiKey: "AIzaSyCrP-1rk6_gbWmG5kl734gwQTZu6SPCM6Y",
+        authDomain: "sasi-appr.firebaseapp.com",
+        databaseURL: "https://sasi-appr-default-rtdb.firebaseio.com",
+        projectId: "sasi-appr",
+        storageBucket: "sasi-appr.appspot.com",
+        messagingSenderId: "654384973370",
+        appId: "1:654384973370:web:c6e972ea1d0ab9a9a89703",
+        measurementId: "G-419YJ9PC0S",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      function onLogin(email, password) {
+        return firebase
+          .auth()
+          .signInWithEmailAndPassword(email, password)
+          .then((data) => {
+            console.log(data);
+            return data.user.getIdToken();
+          })
+          .then((token) => {
+            console.log(token);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    </script>
+  </body>
+  <button onclick='onLogin("admin@sasi.ac.in", "sasi@123")'>Login</button>
+</html>
