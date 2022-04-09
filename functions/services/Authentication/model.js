@@ -44,9 +44,10 @@ class Authentication {
 
           return db.collection("EMPLOYEES").doc(employeeEmail).get();
         }
-        throw err;
+         throw err;
       })
       .then((doc) => {
+        console.log(doc)
         console.log(`INVITING ${employeeEmail}...`);
         let data;
         newToken = JWT.generateToken(employeeEmail);
@@ -55,7 +56,7 @@ class Authentication {
           //   invitedBy: this.actionPerformer.uid,
           invitedAt: new Date().toISOString(),
         };
-        if (doc.exists && isTokenInv) {
+        if (doc.isExists && isTokenInv) {
           console.log("Previous Invitations exists");
           data = doc.data();
           // the below condition will occur when a deleted inactive employee,
@@ -122,67 +123,104 @@ class Authentication {
    * }}
    */
   async _create_employee(inputs) {
-    const { token, employeeData } = inputs;
+    return new Promise((resolve, reject) => {
+      const token = inputs.token;
+      const employeeInfo = inputs.employeeData;
+      let userRef,
+        tokenRef,
+        emailId,
+        userInfo,
+        moduleRef
+      const metaRef = db.collection("META_INFO").doc("employees");
+      const batch = db.batch();
 
-    let userInfo = {};
-    let emailId, uid, employeeRef, tokenRef;
-    return AuthenticationUTILS._check_token_expiry(token)
-      .then((email) => {
-        emailId = email;
-        return AuthenticationUTILS._check_employee_registered_or_not(emailId);
-      })
-      .catch((err) => {
-        if (err.code === "auth/user-not-found") {
-          // User doesn't exist yet, create it...
-          console.log("first")
-         return tokenRef = db.collection("INVITATIONS").doc(emailId);
-        }
-         throw err;
-      })
-      .then(() => {
-        return admin.auth().createUser({
-          email: emailId,
-          password: employeeData.password,
-          displayName: employeeData.empName,
-        });
-      })
-      .then((user) => {
-        (userInfo = user), (uid = user.uid);
-        admin
-          .auth()
-          .setCustomUserClaims(user.uid, { email: emailId, role: "Employee" });
-      })
-      .then(() => {
-        let inputsToSave = {};
-        const batch = db.batch();
-        employeeRef = db.collection("EMPLOYEES").doc(uid);
-        let empEmailRef = db.collection("EMPLOYEES").doc(emailId);
-        Object.entries(employeeData).forEach(([key, value]) => {
-          if (key !== "password") inputsToSave[key] = value;
-        });
-        const registredAt = new Date().toISOString();
-        batch.set(employeeRef, {
-          ...inputsToSave,
-          uid: uid,
-          employeeId: uid,
-          status: "active",
-          role: "employee",
-          isExists: true,
-          registredAt: registredAt,
-        });
-        batch.delete(empEmailRef);
+      return AuthenticationUTILS._check_token_expiry(token)
+        .then((email) => {
+          emailId = email;
+          return AuthenticationUTILS._check_employee_registered_or_not(emailId);
+        })
+        .catch((err) => {
+          if (err.code === "auth/user-not-found") {
+            // User doesn't exist yet, create it...
+            return (tokenRef = db.collection("INVITATIONS").doc(emailId));
+          }
+          throw err;
+        })
+        .then(() => {
+          return admin.auth().createUser({
+            email: emailId,
+            password: inputs.password,
+          });
+        })
+        .then((user) => {
+          userInfo = user;
+          return admin.auth().setCustomUserClaims(user.uid, {
+            role: "user",
+          });
+        })
+        .then(() => {
+          let inputsToSave = {};
+          userRef = db.collection("EMPLOYEES").doc(userInfo.uid);
+          let empEmailRef = db.collection("EMPLOYEES").doc(emailId);
+          const registeredAt = new Date().toISOString();
+          // setting employee collection
+          Object.entries(employeeInfo).forEach(([key, value]) => {
+            console.log("key",key,"value",value)
+            if (key !== "password") inputsToSave[key] = value;
+          });
+          batch.set(userRef, {
+            ...inputsToSave,
+            uid: userInfo.uid,
+            email: emailId,
+            status: "active",
+            role: "user",
+            isDisabled: false,
+            isExist: true,
+            registeredAt: registeredAt,
+          });
 
-        batch.update(tokenRef, {
-          registeredInfo: {
-            isRegistered: true,
-            registeredAt: registredAt,
-          },
+          batch.delete(empEmailRef);
+          // setting up basic modules
+          const modules = {
+            accessibles: [
+              "formA",
+              "formb",
+              "appiraisels",
+              "employee-self-services",
+            ],
+          };
+          moduleRef = db
+            .collection("EMPLOYEES")
+            .doc(userInfo.uid)
+            .collection("MODULE_LEVEL_ACCESS")
+            .doc("modules");
+          batch.set(moduleRef, modules);
+
+          // changing status to registered
+          batch.update(tokenRef, {
+            registeredInfo: {
+              isRegistered: true,
+              registeredAt: registeredAt,
+            },
+          })
+          const metaDoc = {
+            uid: userInfo.uid,
+           ...inputsToSave
+          };
+          let {uid}= userInfo;
+          batch.set(
+            metaRef,
+            {
+              uid: metaDoc,
+            },
+            { merge: true }
+          );
+          return batch.commit();
+        })
+        .catch((err) => {
+          throw err;
         });
-        return batch.commit()
-      })
-      .catch((err) => {
-        throw err;
-      });
+    });
   }
 }
 
