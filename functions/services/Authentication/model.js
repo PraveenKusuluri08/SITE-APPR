@@ -184,6 +184,18 @@ class Authentication {
         throw err;
       });
   }
+
+  async _validate_invitation_token(token) {
+    return AuthenticationUTILS._check_token_expiry(token)
+      .then((info) => {
+        console.log(info);
+        return info;
+      })
+      .catch((err) => {
+        throw err;
+      });
+  }
+
 }
 
 module.exports = Authentication;

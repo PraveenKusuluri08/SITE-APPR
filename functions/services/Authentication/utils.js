@@ -16,6 +16,7 @@ class AuthenticationUTILS {
     }
 
     static async _check_token_expiry(token) {
+        console.log("token",token)
         return new Promise((resolve, reject) => {
             return db.collection("INVITATIONS").where("latestToken", "==", token).get()
                 .then(snap => {

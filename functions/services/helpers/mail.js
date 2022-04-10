@@ -1,8 +1,8 @@
 const AWS = require("aws-sdk");
 
 AWS.config.update({
-  accessKeyId: "AKIA5QTH4FYDDNWLOK5V",
-  secretAccessKey: "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",
+  accessKeyId: "AKIA5QTH4FYDOX7CPD4T",
+  secretAccessKey: "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",
   region: "us-east-1",
 });
 const ses =new AWS.SES({apiVersion:"2010-12-01"})
@@ -12,7 +12,7 @@ function mailToRecipent(user, subject, body) {
     Destination: {
       ToAddresses: [user],
     },
-    ConfigurationSetName: "ecom-emails",
+    ConfigurationSetName: "ECOM-DATA-MAILS",
     Message: {
       Body: {
         Html: {

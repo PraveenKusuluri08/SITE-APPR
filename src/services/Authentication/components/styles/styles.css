@@ -1,0 +1,6 @@
+.login{
+    overflow: hidden; 
+} 
+.forgot_password :hover{
+    text-decoration: underline blue;
+}
