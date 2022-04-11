@@ -17,7 +17,9 @@ class FormBuilder {
         isExists: true,
       },
       { merge: true }
-    );
+    ).then(()=>{
+      
+    })
   }
   async _createFormTemplates(inputs) {
     const { documentName, collectionName } = inputs;
@@ -34,6 +36,7 @@ class FormBuilder {
       cretedAt: new Date().toISOString(),
     },{merge: true});
   }
+
 }
 
 module.exports = FormBuilder;

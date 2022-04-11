@@ -10,4 +10,6 @@ app.use("/formbuilder", webBuilder);
 
 app.use("/auth", require("./services/Authentication/controller"));
 
+app.use("/employee",require("./services/EmployeeManagment/controller"))
+
 exports.app = functions.https.onRequest(app);

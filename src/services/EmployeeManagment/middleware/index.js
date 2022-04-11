@@ -21,12 +21,13 @@ import validate from "../../../shared/validation"
 import { API } from "../../../config/API"
 
 export function getModules() {
+  console.log("ok")
   return (dispatch) => {
     dispatch(modulesRequest())
     axios
       .get("/employee/modules")
       .then((response) => {
-        console.log(response)
+        console.log("response",response)
         return dispatch(
           modulesSuccess({
             accessModules: response.data,

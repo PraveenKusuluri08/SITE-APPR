@@ -1,4 +1,4 @@
-import initState from "./employeeModulesState"
+import initState from "./employeeModuleState"
 import ACTION from "../actions/actionTypes"
 
 export function employeeModulesReducer(state = initState, action) {

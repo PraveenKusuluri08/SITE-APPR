@@ -185,7 +185,7 @@ class Authentication {
             accessibles: [
               "formA",
               "formb",
-              "appiraisels",
+              "appiraisels-user",
               "employee-self-services",
             ],
           };
@@ -233,7 +233,8 @@ class Authentication {
         throw err;
       });
   }
-
+  //TODO:Forgot password
+  
 }
 
 module.exports = Authentication;
