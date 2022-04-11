@@ -3,25 +3,26 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import SignInPage from "./pages/Signin";
 import "./App.css";
-import Navbar from "./services/Dashboard/Navbar";
+import Navbar from "./services/Dashboard/NavBar/";
 import EmployeeRegisterPage from "./pages/EmployeeRegisterPage";
 function App(props) {
   const { auth } = props;
   console.log("first", auth);
 
-  return auth.uid? (
+  return auth.uid ? (
     <AnimatePresence exitBeforeEnter>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Navbar/>}/>
-        </Routes>
+        {/* <Routes>
+          <Route path="*" element={<Navbar />} />
+        </Routes> */}
+        <Navbar />
       </BrowserRouter>
     </AnimatePresence>
   ) : (
     <AnimatePresence exitBeforeEnter>
       <BrowserRouter>
         <Routes>
-          <Route path="invitations/:newToken" element={<EmployeeRegisterPage/>} />
+          <Route path="invitations/:newToken" element={<EmployeeRegisterPage />} />
           <Route path="/" element={<SignInPage />} />
           <Route path="/lognin" element={<SignInPage />} />
         </Routes>
