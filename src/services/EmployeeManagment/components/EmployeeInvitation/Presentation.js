@@ -11,15 +11,13 @@ import {
 } from '@chakra-ui/react'
 import { useDisclosure } from '@chakra-ui/react'
 import { TextField } from '@material-ui/core';
-import { Stack } from '@mui/material'
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
 function Presentation(props) {
     const { handleChange, state } = props
     const { isOpen, onOpen, onClose } = useDisclosure()
     return (
         <div>
 
-            <Button onClick={onOpen}>Invite Employee  <PersonAddIcon /></Button>
+            <Button onClick={onOpen}>Invite Employee  </Button>
 
             <Modal isOpen={isOpen} onClose={onClose} >
                 <ModalOverlay />
