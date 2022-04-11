@@ -9,22 +9,22 @@ const routes = [
     {
         path: "/formbuilder",
         component: <FormBuilder />,
-        moduleName: "form builder",
+        moduleName: "form builder",//Admin
     },
     {
         path: "/formbuilder/formA",
         component: <FormA />,
-        moduleName: "formA",
+        moduleName: "formA",//Admin->Textfields User->Values
     },
     {
         path: "/formbuilder/formB",
         component: <FormB />,
-        moduleName: "formB",
+        moduleName: "formB",//Admin->Textfields User->Values
     },
     {
         path: "/formbuilder/appraisal",
         component: <Appraisal />,
-        moduleName: "formB",
+        moduleName: "appraisal-formC",
     },
     {
         path: "/employee/management",
@@ -32,7 +32,7 @@ const routes = [
         moduleName: "form builder",
     },
     {
-        path: "/employee/invitation",
+        path: "/employeeinvitation",
         component: <EmployeeInvitation />,
         moduleName: "form builder",
     },

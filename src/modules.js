@@ -22,7 +22,7 @@ const modules = [
   {
     text: "Employee Invitation",
     icon: <GoMailRead size={18} />,
-    link: '/employee/invitation',
+    link: '/employeeinvitation',
     moduleName: 'Employee invitation'
   },
   {

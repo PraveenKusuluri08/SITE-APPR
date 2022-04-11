@@ -71,7 +71,9 @@ function Presentation(props) {
           >
             <MenuIcon />
           </IconButton>
-          <img className={classes.image} src="https://res.cloudinary.com/sasi/image/upload/v1649501933/lokesh/Screenshot_2022-04-09_162104_tib5wx.png" alt="" height="60" />
+          <Link to="/">
+            <img className={classes.image} src="https://res.cloudinary.com/sasi/image/upload/v1649501933/lokesh/Screenshot_2022-04-09_162104_tib5wx.png" alt="" height="60" />
+          </Link>
           <div className={classes.align}>
             <IconButton
               aria-label="account of current user"
