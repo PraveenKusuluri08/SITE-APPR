@@ -12,8 +12,7 @@ import {
   errorMsg,
 } from "../../../shared/snakbars/index"
 import axios from "axios"
-import make_API_call from "../../../providers/REST_API"
-import {API} from "../../../config/API"
+import { API } from "../../../config/API"
 
 export const setState = (obj) => (dispatch) => {
   return dispatch(setStateAction(obj))
@@ -27,7 +26,7 @@ export const loadInvitationEmail = (payload) => (
   console.log("payload", payload)
   dispatch(loadInvitationEmailRequest())
   let subscribe = ""
-  axios.post(`${API}/auth/validateinvitationtoken`,payload)
+  axios.post(`${API}/auth/validateinvitationtoken`, payload)
     .then((data) => {
       console.log(data, "tokendddd")
       subscribe = data
