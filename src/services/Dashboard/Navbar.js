@@ -5,13 +5,13 @@ import { onSignout } from '../Authentication/middleware'
 function Navbar(props) {
   return (
     <div>
-        <button onClick={props.onSignout}>Logout</button>
+      <button onClick={props.onSignout}>Logout</button>
     </div>
   )
 }
-const mapDispatchToProps =(dispatch) =>{
-    return{
-        onSignout:()=>dispatch(onSignout())
-    }
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSignout: () => dispatch(onSignout())
+  }
 }
-export default connect(null,mapDispatchToProps) (Navbar)
+export default connect(null, mapDispatchToProps)(Navbar)
