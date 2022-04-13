@@ -9,37 +9,37 @@ const routes = [
     {
         path: "/formbuilder",
         component: <FormBuilder />,
-        moduleName: "form builder",
+        moduleName: "form-builder",
     },
     {
         path: "/formbuilder/formA",
         component: <FormA />,
-        moduleName: "formA",
+        moduleName: "form-a",
     },
     {
         path: "/formbuilder/formB",
         component: <FormB />,
-        moduleName: "formB",
+        moduleName: "form-b",
     },
     {
         path: "/formbuilder/appraisal",
         component: <Appraisal />,
-        moduleName: "formB",
+        moduleName: "appraisal",
     },
     {
         path: "/employee/management",
         component: <EmployeeManagement />,
-        moduleName: "form builder",
+        moduleName: "employee-management",
     },
     {
         path: "/employee/invitation",
         component: <EmployeeInvitation />,
-        moduleName: "form builder",
+        moduleName: "employee-invitation",
     },
     {
         path: "/history",
         component: <History />,
-        moduleName: "form builder",
+        moduleName: "history",
     },
 ]
 export default routes

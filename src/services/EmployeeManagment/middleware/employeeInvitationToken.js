@@ -57,8 +57,8 @@ export const loadInvitedEmployeeInfo = (payload) => (
     .get()
     .then(
       (snap) => {
-        const data = snap.data().personal
-        console.log(snap.data())
+        const data = snap.data().generalInfo
+        console.log("snap",snap.data())
         return dispatch(loadInvitatedEmpInfoSuccess(data))
       },
       (err) => {

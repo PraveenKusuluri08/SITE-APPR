@@ -32,4 +32,19 @@ router.post("/create-formBuilder", closedEnd, (req, res) => {
     });
 });
 
+router.post("/invitationFromBuilder", closedEnd, (req, res) => {
+  const inputs = req.body;
+  const obj = new FormBuilder(req.user);
+  obj
+    ._onFormBuilderUpdated(inputs)
+    .then(() => {
+      return res
+        .status(200)
+        .json({ message: "Invitation form updated successfully" });
+    })
+    .catch((err) => {
+      return res.status(400).json({ error: err });
+    });
+});
+
 module.exports = router;

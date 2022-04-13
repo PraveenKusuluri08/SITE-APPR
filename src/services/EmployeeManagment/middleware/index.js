@@ -26,7 +26,7 @@ export function getModules() {
     axios
       .get("/employee/modules")
       .then((response) => {
-        console.log(response)
+        console.log("response",response)
         return dispatch(
           modulesSuccess({
             accessModules: response.data,

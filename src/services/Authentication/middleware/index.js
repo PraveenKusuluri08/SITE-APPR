@@ -48,6 +48,7 @@ import {
         .then((res) => {
           console.log("res",res)
           dispatch(signoutSuccess());
+
         })
         .catch((err) => {
           console.log(err);

@@ -1,20 +1,19 @@
 import { connect } from "react-redux";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import SignInPage from "./pages/Signin";
 import "./App.css";
 import Navbar from "./services/Dashboard/NavBar/";
 import EmployeeRegisterPage from "./pages/EmployeeRegisterPage";
 function App(props) {
+  
   const { auth } = props;
-  console.log("first", auth);
+  console.log("first", auth.uid);
+ 
 
-  return auth.uid ? (
+  return auth.uid && auth.uid!==undefined? (
     <AnimatePresence exitBeforeEnter>
       <BrowserRouter>
-        {/* <Routes>
-          <Route path="*" element={<Navbar />} />
-        </Routes> */}
         <Navbar />
       </BrowserRouter>
     </AnimatePresence>
