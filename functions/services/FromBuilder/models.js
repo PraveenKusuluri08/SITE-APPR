@@ -18,6 +18,9 @@ class FormBuilder {
       },
       { merge: true }
     );
+    // .then(()=>{
+    //   return db.collection("INVITATION_FORM_BUILDER").doc()
+    // })
   }
   async _createFormTemplates(inputs) {
     const { documentName, collectionName } = inputs;
@@ -28,11 +31,40 @@ class FormBuilder {
       if (key === documentName || key === collectionName)
         documentData[key] = value;
     });
-    return dbRef.set({
-      ...documentData,
-      isExists: true,
-      cretedAt: new Date().toISOString(),
-    },{merge: true});
+    return dbRef.set(
+      {
+        ...documentData,
+        isExists: true,
+        cretedAt: new Date().toISOString(),
+      },
+      { merge: true }
+    );
+  }
+
+  /***
+   * @param inputs
+   * docName:string, ->via sectionName
+   * fields:string,->Via form builder frontend
+   * docData:string
+   */
+  async _onFormBuilderUpdated(inputs) {
+    const { docName, fields } = inputs;
+    return db
+      .collection("INVITATION_FORM_BUILDER")
+      .doc(docName)
+      .set(
+        {
+          fields,
+          heading: inputs.heading,
+          id: inputs.id,
+          section: inputs.section,
+          index: inputs.index,
+        },
+        { merge: true }
+      )
+      .catch((err) => {
+        throw err;
+      });
   }
 }
 

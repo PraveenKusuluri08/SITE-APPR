@@ -3,7 +3,7 @@ import Presentation from './Presentation'
 
 function Container() {
     return (
-        <div><Presentation /></div>
+        <Presentation />
     )
 }
 

@@ -10,32 +10,32 @@ const modules = [
   {
     text: "Employee Management",
     icon: <FaTasks size={18} />,
-    link: "/employee/management",
-    moduleName: "Employee Management",
+    link: "/employeemanagement",
+    moduleName: "employee-management",
   },
   {
     text: "Profile Builder",
     icon: <ImProfile size={18} />,
     link: "/profilebuilder",
-    moduleName: "profile builder",
+    moduleName: "profile-builder",
   },
   {
     text: "Employee Invitation",
     icon: <GoMailRead size={18} />,
-    link: '/employee/invitation',
-    moduleName: 'Employee invitation'
+    link: '/employeeinvitation',
+    moduleName: 'employee-invitation'
   },
   {
     text: "Form Builder",
     icon: <AiOutlineForm size={18} />,
     link: '/formbuilder',
-    moduleName: 'Form Builder'
+    moduleName: 'form-builder'
   },
   {
     text: "History",
     icon: <IoMdAlarm size={18} />,
     link: '/history',
-    moduleName: 'History'
+    moduleName: 'history'
   },
 ]
 

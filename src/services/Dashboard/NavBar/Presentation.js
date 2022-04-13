@@ -16,11 +16,11 @@ import {
   Tooltip,
 } from "@material-ui/core";
 
-import { connect } from 'react-redux'
-import { onSignout } from '../../Authentication/middleware'
+import { connect } from "react-redux";
+import { onSignout } from "../../Authentication/middleware";
 import modules from "../../../modules";
-import { Routes, Route, BrowserRouter, Navigate } from 'react-router-dom'
-import routes from '../../../routes'
+import { Routes, Route, BrowserRouter, Navigate, useNavigate } from "react-router-dom";
+import routes from "../../../routes";
 import {
   Menu as MenuIcon,
   ChevronLeft as ChevronLeftIcon,
@@ -35,6 +35,13 @@ function Presentation(props) {
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const openIcon = Boolean(anchorEl);
+
+
+  const navigate = useNavigate()
+ if(!props.auth.uid){
+    return navigate("/login");
+  }
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -71,7 +78,12 @@ function Presentation(props) {
           >
             <MenuIcon />
           </IconButton>
-          <img className={classes.image} src="https://res.cloudinary.com/sasi/image/upload/v1649501933/lokesh/Screenshot_2022-04-09_162104_tib5wx.png" alt="" height="60" />
+          <img
+            className={classes.image}
+            src="https://res.cloudinary.com/sasi/image/upload/v1649501933/lokesh/Screenshot_2022-04-09_162104_tib5wx.png"
+            alt=""
+            height="60"
+          />
           <div className={classes.align}>
             <IconButton
               aria-label="account of current user"
@@ -93,14 +105,13 @@ function Presentation(props) {
               open={openIcon}
               onClose={handleClose}
             >
-              <Link to={`/profile`} style={{ color: "black", textDecoration: 'none' }}>
+              <Link
+                to={`/profile`}
+                style={{ color: "black", textDecoration: "none" }}
+              >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
               </Link>
-              <MenuItem
-                onClick={props.onSignout}
-              >
-                Sign out
-              </MenuItem>
+              <MenuItem onClick={props.onSignout}>Sign out</MenuItem>
             </Menu>
           </div>
         </Toolbar>
@@ -129,14 +140,20 @@ function Presentation(props) {
         </div>
         <Divider />
         {modules
+          .filter(
+            (ele) =>
+              (props.accessModules.includes(ele.moduleName) ||
+               props.accessModules.includes("console-customization") 
+            )
+          )
           .map((item) => {
             return (
-              <Link onClick={handleDrawerClose} to={item.link} key={item.text} style={{ textDecoration: 'none', color: '#267a94' }}>
+              <Link onClick={handleDrawerClose} to={item.link} key={item.text}>
                 <ListItem className={classes.menuItem}>
                   <Tooltip
                     arrow
                     title={
-                      <h4 style={{ size: "10px", marginBottom: "2px", }}>
+                      <h4 style={{ size: "7px", marginBottom: "2px" }}>
                         {item.text}
                       </h4>
                     }
@@ -144,7 +161,7 @@ function Presentation(props) {
                   >
                     <ListItemIcon>{item.icon}</ListItemIcon>
                   </Tooltip>
-                  <ListItemText primary={item.text} className={classes.link} />
+                  <ListItemText primary={item.text} />
                 </ListItem>
               </Link>
             );
@@ -156,19 +173,16 @@ function Presentation(props) {
         <br />
         <Routes>
           {routes.map(({ path, component, moduleName }) => {
-
-            return (
-              <Route key={path} path={path} element={component} />
+            if (
+              props.accessModules.includes(moduleName) ||
+              props.accessModules.includes("console-customization")
             )
+              return <Route key={path} path={path} element={component} />;
           })}
         </Routes>
       </main>
     </div>
   );
 }
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onSignout: () => dispatch(onSignout())
-  }
-}
-export default connect(null, mapDispatchToProps)(Presentation)
+
+export default Presentation;
