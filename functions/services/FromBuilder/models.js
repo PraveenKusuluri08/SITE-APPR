@@ -55,10 +55,10 @@ class FormBuilder {
       .set(
         {
           fields,
-          heading: inputs.heading,
-          id: inputs.id,
+          heading: inputs.sectionName,
+          id: inputs.access_key,
           section: inputs.section,
-          index: inputs.index,
+          index: inputs.sortPriority,
         },
         { merge: true }
       )
