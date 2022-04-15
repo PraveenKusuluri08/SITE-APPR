@@ -4,13 +4,11 @@ import { combineReducers } from "redux";
 import { firebaseReducer } from "react-redux-firebase";
 import {firestoreReducer} from "redux-firestore"
 import { Actions } from "../../services/Authentication/actions/actionTypes";
-import consoleReducer from '../../services/Console/reducers'
 const appReducer = combineReducers({
   firestore: firestoreReducer,
   firebase: firebaseReducer,
   authentication: authReducers,
-  employee: employeeReducers,
-  console: consoleReducer,
+  employee: employeeReducers
 });
 
 const rootReducer = (state, action) => {
