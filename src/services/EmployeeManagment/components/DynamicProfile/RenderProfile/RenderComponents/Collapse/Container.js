@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Presentation from "./Presentation"
 import { connect } from "react-redux"
-import { _set_state, updateProfile } from "../../../../../middleware/dynamicProfileRender"
+import { _set_state } from "../../../../../middleware/dynamicProfileRender"
 import Validations from '../../../../../../../shared/validation'
 
 function Container(props) {
@@ -130,13 +130,13 @@ function Container(props) {
 
 const mapStateToProps = state => ({
   state: state.employee.dynamicProfileRender,
-  access_modules: state.employee.employeeModules.accessModules,
+  // access_modules: state.employee.employeeModules.accessModules,
   names: state.firestore.data.names
 })
 
 const mapDispatchToProps = dispatch => ({
   setState: (obj) => dispatch(_set_state(obj)),
-  _update_profile: (obj, employeeID, modifiedProfile) => dispatch(updateProfile(obj, employeeID, modifiedProfile))
+  // _update_profile: (obj, employeeID, modifiedProfile) => dispatch(updateProfile(obj, employeeID, modifiedProfile))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Container)

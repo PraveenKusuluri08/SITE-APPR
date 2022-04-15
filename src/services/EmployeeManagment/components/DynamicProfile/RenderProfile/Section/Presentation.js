@@ -40,7 +40,7 @@ function Presentation(props) {
           null
       }
 
-
+<br/>
       <div>
         <Collapse sectionKey={section.access_key} />
       </div>

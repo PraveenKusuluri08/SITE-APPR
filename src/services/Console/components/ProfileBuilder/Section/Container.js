@@ -26,18 +26,12 @@ function Container(props) {
   const setData = (data) => {
     return setDummyData((prevState) => ({
       ...prevState,
-      ...data,
-    }));
-  };
-  console.log(
-    "state->ProfileBuilder",
-    sectionKey === state.profileTemplate.data.sections[sectionKey]
-  );
-
-  const handleAddToInvitationTemplate = () => {
-    _update_template(state.profileTemplate?.data?.sections[sectionKey]);
-  };
-
+      ...data
+  
+    }))
+  }
+  console.log("state->ProfileBuilder",state.profileTemplate,sectionKey)
+ 
   return (
     <Presentation
       fields={state.profileTemplate?.data?.sections[sectionKey]?.fields || []}

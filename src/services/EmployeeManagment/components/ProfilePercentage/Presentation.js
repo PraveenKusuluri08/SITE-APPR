@@ -1,6 +1,6 @@
 // import React from "react"
 // import { Progress } from "reactstrap"
-// // import { Pie, Doughnut } from "react-chartjs-2"
+// import { Pie, Doughnut } from "react-chartjs-2"
 // // import Chart from "chart.js"
 
 // export default function Presentation(props) {

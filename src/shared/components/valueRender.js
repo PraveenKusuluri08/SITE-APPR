@@ -17,10 +17,10 @@ export const DateType = ({ value }) => {
 }
 
 export const TextType = ({ value = "" }) => {
-  const metainfo = new MetaInfo()
+  // const metainfo = new MetaInfo()
   return (
     <Typography>
-      {value.length >= 9 ? metainfo.emailToName(value) : value}
+      {value}
     </Typography>
   )
 }

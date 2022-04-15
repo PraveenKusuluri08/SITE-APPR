@@ -96,26 +96,16 @@ export default function Presentation(props) {
   ];
   const newField = state.newField;
   return (
-    <div>
-      <div>
-        {isEdit ? (
-          <span onClick={handleClickOpen}>Edit</span>
-        ) : (
-          <IconButton
-            onClick={handleClickOpen}
-            style={{ width: "20px", height: "20px", marginLeft: "1377px" }}
-          >
-            <AddCircleOutlineIcon
-              color="primary"
-              style={{
-                width: "20px",
-                height: "20px",
-                marginRight: "10px",
-                position: "fixed",
-              }}
-            />
+    <div >
+      <div  > 
+
+      {
+        isEdit ? <span onClick={handleClickOpen} >Edit</span>
+          :
+          <IconButton onClick={handleClickOpen} style={{width:"20px",height:"20px",marginLeft:"1360px"}} >
+            <AddCircleOutlineIcon color="primary" style={{width:"20px",height:"20px"}} />
           </IconButton>
-        )}
+}
       </div>
 
       <Dialog

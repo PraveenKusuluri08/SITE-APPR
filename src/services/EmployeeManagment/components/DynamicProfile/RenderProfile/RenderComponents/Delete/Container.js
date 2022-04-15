@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Presentation from "./Presentation"
-import { _set_state, updateProfile } from "../../../../../middleware/dynamicProfileRender"
+import { _set_state } from "../../../../../middleware/dynamicProfileRender"
 import { connect } from "react-redux"
 
 function Container(props) {
@@ -44,7 +44,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   setState: (obj) => dispatch(_set_state(obj)),
-  _update_profile: (obj, employeeID, modifiedProfile) => dispatch(updateProfile(obj, employeeID, modifiedProfile))
+  // _update_profile: (obj, employeeID, modifiedProfile) => dispatch(updateProfile(obj, employeeID, modifiedProfile))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Container)

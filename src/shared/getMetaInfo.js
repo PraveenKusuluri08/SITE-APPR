@@ -1,4 +1,4 @@
-// import store from "./../";
+// import store from "../store/index/store";
 
 // export default class MetaInfo {
 //   constructor() {

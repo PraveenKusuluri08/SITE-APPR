@@ -30,7 +30,7 @@ function Presentation(props) {
       <IconButton
         onClick={() => onDelete()}
         color="secondary"
-        onClick={handleClickOpen}
+        // onClick={handleClickOpen}
       >
         <DeleteOutlineIcon />
       </IconButton>

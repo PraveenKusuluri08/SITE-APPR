@@ -27,8 +27,8 @@ function Container(props) {
       documentURL: null,
       image: null,
       file: null,
-      generalInformation: {},
-      contactDetails: {},
+      generalinformation: {},
+      contactdetails: {},
       qualifications: {},
     
     })
@@ -50,11 +50,12 @@ function Container(props) {
     const [documentUrl, setDocUrl] = useState(null)
     
     const handleStateSet = (name, value) => {
+      console.log("name",name)
       setState({
         ...state,
         [name]: value,
       })
-      if (name === "generalInformation") {
+      if (name === "generalinformation") {
         let generalError = 0
         Object.entries(value).forEach(([k, v]) => {
           if (k === "empName" && v === "" ) {
@@ -71,13 +72,18 @@ function Container(props) {
             ...err,
             generailOk: false,
           })
-      } else if (name === "contactDetails") {
+      } else if (name === "contactdetails") {
         let contactErr = 0
-        Object.entries(value).forEach(([k, v]) => {
-            if(k==="phonenumber" && !Validations.checkNumber(v))
+        Object.entries(value).forEach(([k, v]) => {   
+          console.log("kk",k)
+            if(k==="email" && !Validations.checkEmail(v))
+               contactErr++;
+
+            if(k==="phoneNumber" && !Validations.checkNumber(v))
             contactErr++;
-        })
-        if (contactErr === 3)
+          })
+          console.log("praveenError",contactErr)
+        if (contactErr === 0)
           setErr({
             ...err,
             contactOk: true,
@@ -187,17 +193,22 @@ function Container(props) {
         password: state.confirmPassword,
         employeeInfo: {
           imageURL: profileUrl,
-          workauth: [{ ...state.workauthorization, work_doc: documentUrl }],
-          employmenthistory: [state.employementhistory],
-          emergencycontact: [state.emergencycontact],
-          mailingaddress: state.mailingaddress,
-          personal: {
-            ...state.personalinformation,
-            Role: "User",
-            employeestatus: "Bench",
-          },
-          educationhistory: [],
+        
+          // workauth: [{ ...state.workauthorization, work_doc: documentUrl }],
+          // employmenthistory: [state.employementhistory],
+          // emergencycontact: [state.emergencycontact],
+          // mailingaddress: state.mailingaddress,
+          contactdetails:[state.contactdetails],
+          generalinformation:[state.generalinformation],
+
+          // personal: {
+          //   ...state.personalinformation,
+          //   Role: "User",
+          //   employeestatus: "Bench",
+          // },
+          // educationhistory: [],
         },
+     
       }
       employeeRegistration(profileData, props.history)
       setState({
@@ -208,11 +219,17 @@ function Container(props) {
       // end of register function
     }
     const handleChange1 = (file, email) => {
+
       if (file) {
         const image = file
+        
         setProfile(() => image)
         ImgUpload(file, email)
       } else {
+        // const image = file
+        
+        // setProfile(() => image)
+        // ImgUpload(file, email)
       }
     }
   
@@ -261,6 +278,7 @@ function Container(props) {
                 .child(image.name)
                 .getDownloadURL()
                 .then((url) => {
+                  console.log("url",url)
                   setUrl(url)
                   setState({
                     ...state,
@@ -372,8 +390,11 @@ function Container(props) {
         )
       }
     }
+    console.log("state",state)
+    console.log("hhh",profileUrl)
     if (!empInfo["invitationTokenEmpInfo"].isLoading)
       return (
+        
         <div>s
           <Presentation
             {...props}
