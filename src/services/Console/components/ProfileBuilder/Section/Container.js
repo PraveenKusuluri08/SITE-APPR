@@ -30,6 +30,10 @@ function Container(props) {
   
     }))
   }
+  const handleAddToInvitationTemplate = () => {
+    _update_template(state.profileTemplate?.data?.sections[sectionKey]);
+  };
+
   console.log("state->ProfileBuilder",state.profileTemplate,sectionKey)
  
   return (
