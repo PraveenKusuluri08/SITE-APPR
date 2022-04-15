@@ -40,7 +40,7 @@ router.post("/invitationFromBuilder", closedEnd, (req, res) => {
     .then(() => {
       return res
         .status(200)
-        .json({ message: "Invitation form updated successfully" });
+        .json({ message: "Invitation template form updated successfully" });
     })
     .catch((err) => {
       return res.status(400).json({ error: err });

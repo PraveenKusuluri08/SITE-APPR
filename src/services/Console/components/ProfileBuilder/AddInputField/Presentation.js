@@ -1,19 +1,28 @@
-import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import MuiDialogTitle from '@material-ui/core/DialogTitle';
-import MuiDialogContent from '@material-ui/core/DialogContent';
-import MuiDialogActions from '@material-ui/core/DialogActions';
-import CloseIcon from '@material-ui/icons/Close';
-import Typography from '@material-ui/core/Typography';
-import { IconButton, TextField, MenuItem, Grid, FormControlLabel } from "@material-ui/core"
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-import IOSSwitch from "../../../../../shared/iosSwitch"
-import { TextInput, CustomField } from "../../../../../shared/components/formFields"
-import Select from "../BuilderComponents/Select"
-import Geo from "../BuilderComponents/Geo"
-import DateRange from "../BuilderComponents/DateRange"
+import React from "react";
+import { withStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import MuiDialogTitle from "@material-ui/core/DialogTitle";
+import MuiDialogContent from "@material-ui/core/DialogContent";
+import MuiDialogActions from "@material-ui/core/DialogActions";
+import CloseIcon from "@material-ui/icons/Close";
+import Typography from "@material-ui/core/Typography";
+import {
+  IconButton,
+  TextField,
+  MenuItem,
+  Grid,
+  FormControlLabel,
+} from "@material-ui/core";
+import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
+import IOSSwitch from "../../../../../shared/iosSwitch";
+import {
+  TextInput,
+  CustomField,
+} from "../../../../../shared/components/formFields";
+import Select from "../BuilderComponents/Select";
+import Geo from "../BuilderComponents/Geo";
+import DateRange from "../BuilderComponents/DateRange";
 
 const styles = (theme) => ({
   root: {
@@ -21,7 +30,7 @@ const styles = (theme) => ({
     padding: theme.spacing(2),
   },
   closeButton: {
-    position: 'absolute',
+    position: "absolute",
     right: theme.spacing(1),
     top: theme.spacing(1),
     color: theme.palette.grey[500],
@@ -34,7 +43,11 @@ const DialogTitle = withStyles(styles)((props) => {
     <MuiDialogTitle disableTypography className={classes.root} {...other}>
       <Typography variant="h6">{children}</Typography>
       {onClose ? (
-        <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+        <IconButton
+          aria-label="close"
+          className={classes.closeButton}
+          onClick={onClose}
+        >
           <CloseIcon />
         </IconButton>
       ) : null}
@@ -65,8 +78,8 @@ export default function Presentation(props) {
     state,
     addNewField,
     sectionKey,
-    isEdit
-  } = props
+    isEdit,
+  } = props;
   const fieldTypes = [
     "text",
     "alphanumeric",
@@ -80,41 +93,54 @@ export default function Presentation(props) {
     "fromdate",
     "todate",
     "file",
-  ]
-  const newField = state.newField
+  ];
+  const newField = state.newField;
   return (
-    <div >
-      <div  > 
-
-      {
-        isEdit ? <span onClick={handleClickOpen} >Edit</span>
-          :
-          <IconButton onClick={handleClickOpen} style={{width:"20px",height:"20px",marginLeft:"1377px"}} >
-            <AddCircleOutlineIcon color="primary" style={{width:"20px",height:"20px"}} />
+    <div>
+      <div>
+        {isEdit ? (
+          <span onClick={handleClickOpen}>Edit</span>
+        ) : (
+          <IconButton
+            onClick={handleClickOpen}
+            style={{ width: "20px", height: "20px", marginLeft: "1377px" }}
+          >
+            <AddCircleOutlineIcon
+              color="primary"
+              style={{
+                width: "20px",
+                height: "20px",
+                marginRight: "10px",
+                position: "fixed",
+              }}
+            />
           </IconButton>
-      }
+        )}
       </div>
-     
 
-      <Dialog fullWidth onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
+      <Dialog
+        fullWidth
+        onClose={handleClose}
+        aria-labelledby="customized-dialog-title"
+        open={open}
+      >
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           {section?.sectionName}
         </DialogTitle>
         <DialogContent dividers>
           <Grid justify="center" container spacing={2}>
             <Grid item xs={12} sm={newField.type === "" ? 12 : 4}>
-              {
-                newField.type !== "" ?
-                  <CustomField
-                    type={newField.type}
-                    required={newField.required}
-                    label={newField.label}
-                    menuItems={newField.values}
-                    handleChange={() => { }}
-                  />
-                  :
-                  <h4 className="text-center" >Select field to see the preview</h4>
-              }
+              {newField.type !== "" ? (
+                <CustomField
+                  type={newField.type}
+                  required={newField.required}
+                  label={newField.label}
+                  menuItems={newField.values}
+                  handleChange={() => {}}
+                />
+              ) : (
+                <h4 className="text-center">Select field to see the preview</h4>
+              )}
             </Grid>
           </Grid>
           <br />
@@ -131,14 +157,18 @@ export default function Presentation(props) {
                   variant="outlined"
                   value={newField.type}
                   onChange={(e) => setNewFieldState({ type: e.target.value })}
-                // helperText="Please select your currency"
+                  // helperText="Please select your currency"
                 >
-                  <MenuItem value={""} ><em>None</em></MenuItem>
-                  {
-                    fieldTypes.map(t => {
-                      return <MenuItem key={t} value={t} >{t[0].toUpperCase() + t.slice(1)}</MenuItem>
-                    })
-                  }
+                  <MenuItem value={""}>
+                    <em>None</em>
+                  </MenuItem>
+                  {fieldTypes.map((t) => {
+                    return (
+                      <MenuItem key={t} value={t}>
+                        {t[0].toUpperCase() + t.slice(1)}
+                      </MenuItem>
+                    );
+                  })}
                 </TextField>
               </Grid>
               <Grid item xs={12} sm={4}>
@@ -158,38 +188,30 @@ export default function Presentation(props) {
                   label="Required Field"
                   required
                   value={newField.required}
-                  onChange={(e) => setNewFieldState({ required: e.target.checked })}
+                  onChange={(e) =>
+                    setNewFieldState({ required: e.target.checked })
+                  }
                 />
               </Grid>
-              {
-                newField.type === "select" ?
-                  <Grid item xs={12}>
-                    <Select />
-                  </Grid>
-                  :
-                  null
-              }
+              {newField.type === "select" ? (
+                <Grid item xs={12}>
+                  <Select />
+                </Grid>
+              ) : null}
 
-              {
-                newField.type === "state" ?
-                  <Grid item xs={12}>
-                    <Geo sectionKey={sectionKey} />
-                  </Grid>
-                  :
-                  null
-              }
+              {newField.type === "state" ? (
+                <Grid item xs={12}>
+                  <Geo sectionKey={sectionKey} />
+                </Grid>
+              ) : null}
 
-              {
-                newField.type === "todate" ?
-                  <Grid item xs={12}>
-                    <DateRange sectionKey={sectionKey} />
-                  </Grid>
-                  :
-                  null
-              }
-
+              {newField.type === "todate" ? (
+                <Grid item xs={12}>
+                  <DateRange sectionKey={sectionKey} />
+                </Grid>
+              ) : null}
             </Grid>
-            <div className="text-center" >
+            <div className="text-center">
               <Button
                 type="submit"
                 variant="contained"
@@ -200,7 +222,6 @@ export default function Presentation(props) {
             </div>
           </form>
         </DialogContent>
-
       </Dialog>
     </div>
   );
