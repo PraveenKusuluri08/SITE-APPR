@@ -5,9 +5,9 @@ import {
   loadEmployeeProfileReq,
   loadEmployeeProfileSuccess,
   loadEmployeeProfileFailure,
-  updateProfileRequest,
-  updateProfileSuccess,
-  updateProfileFailure
+  // updateProfileRequest,
+  // updateProfileSuccess,
+  // updateProfileFailure
 } from "../actions/dynamicProfileRenderActionCreators"
 import { setStateAction } from "../actions/actionCreators"
 import {
@@ -52,16 +52,16 @@ export const loadEmployeeProfile = (employeeID) => (dispatch, getState, { getFir
 }
 
 
-export const updateProfile = (payload, employeeID, modifiedProfile) => (dispatch, getState) => {
-  dispatch(updateProfileRequest());
-  return make_API_call("put", `/employee/${employeeID}/updateprofile`, payload)
-    .then((res) => {
-      successMsg(res.message)
-      return dispatch(updateProfileSuccess(modifiedProfile));
-    })
-    .catch((err) => {
-      console.log(err);
-      errorMsg(err.message)
-      dispatch(updateProfileFailure("Failed to update profile"));
-    });
-};
+// export const updateProfile = (payload, employeeID, modifiedProfile) => (dispatch, getState) => {
+//   dispatch(updateProfileRequest());
+//   return make_API_call("put", `/employee/${employeeID}/updateprofile`, payload)
+//     .then((res) => {
+//       successMsg(res.message)
+//       return dispatch(updateProfileSuccess(modifiedProfile));
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//       errorMsg(err.message)
+//       dispatch(updateProfileFailure("Failed to update profile"));
+//     });
+// };

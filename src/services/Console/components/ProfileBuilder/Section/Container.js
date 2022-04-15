@@ -13,6 +13,7 @@ function Container(props) {
     return setDummyData((prevState) => ({
       ...prevState,
       ...data
+  
     }))
   }
   console.log("state->ProfileBuilder",state.profileTemplate,sectionKey)

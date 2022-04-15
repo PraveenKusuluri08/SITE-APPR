@@ -27,7 +27,7 @@ function Presentation(props) {
   return (
     <div>
       <div className="d-flex justify-content-between" >
-        <h3 className="">
+        <h3 style={{marginLeft:"9px",fontSize:"18px",fontWeight:"bold"}}>
           <u>{section.sectionName}:</u>
         </h3>
       </div>
@@ -47,7 +47,7 @@ function Presentation(props) {
                   )
                 })
               }
-              <TableCell width="40%" align="left">
+              <TableCell width="10%" align="left">
                 Actions
             </TableCell>
             </TableRow>

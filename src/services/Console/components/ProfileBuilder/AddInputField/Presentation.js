@@ -89,7 +89,7 @@ export default function Presentation(props) {
       {
         isEdit ? <span onClick={handleClickOpen} >Edit</span>
           :
-          <IconButton onClick={handleClickOpen} style={{width:"20px",height:"20px",marginLeft:"1377px"}} >
+          <IconButton onClick={handleClickOpen} style={{width:"20px",height:"20px",marginLeft:"1360px"}} >
             <AddCircleOutlineIcon color="primary" style={{width:"20px",height:"20px"}} />
           </IconButton>
       }

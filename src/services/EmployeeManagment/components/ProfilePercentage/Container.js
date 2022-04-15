@@ -12,11 +12,10 @@ function Container(props) {
   let totalFields = 0
   totalFields = 36
   const percentageCount = {
-    personal: 20,
-    emergencycontact: 20,
-    employment: 20,
-    workauth: 20,
-    edu: 20,
+    contactDetails: 30,
+    generalInformation: 40,
+    qualification: 30,
+
   }
 
   let unFilledFields = 0

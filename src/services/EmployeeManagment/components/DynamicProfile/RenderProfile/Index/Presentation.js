@@ -26,6 +26,7 @@ function Presentation(props) {
   const sections = state.profileTemplate.data.sections
   const loadingCondition = profileTemplate.isLoading || employeeProfile.isLoading
   const errorCondition = (profileTemplate.error !== "") || (employeeProfile.error !== "")
+  console.log("SECTIONS",sections)
   if (loadingCondition)
     return "Loading"
   else if (errorCondition)
@@ -38,7 +39,7 @@ function Presentation(props) {
           <div style={{ margin: "8px" }}>
             <IDcard profile={employeeProfile.data} id={employeeProfile.data.employeeID} individual={false} />
             <br />
-            <ProfilePercentage profile={employeeProfile.data} />
+            {/* <ProfilePercentage profile={employeeProfile.data} /> */}
             {/* <AssignRole id={employeeProfile.data.employeeID} profile={employeeProfile.data} /> */}
             {/* <PrintPDF profile={employeeProfile.data} id={employeeProfile.data.employeeID} individual={false} /> */}
           </div>
@@ -47,8 +48,10 @@ function Presentation(props) {
           <Grid container spacing={1}>
             {
               Object.values(sections).sort((a, b) => a.sortPriority - b.sortPriority).map(item => {
+                console.log("Itemm",item.access_key)
                 return (
                   <Section key={item.access_key} section={item} />
+               
                 )
               })
             }

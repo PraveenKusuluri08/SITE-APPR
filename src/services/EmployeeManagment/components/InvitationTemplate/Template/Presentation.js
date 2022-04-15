@@ -19,7 +19,7 @@ function Presentation(props) {
 		>
 			<div></div>
 			<Grid container spacing={2}>
-				<Paper style={{ padding: "15px" }}>
+				<Paper style={{ padding: "15px" ,width:"800px",marginLeft:"9px"}}>
 					{formData.map((portion, index) => {
 						const { section, fields, heading } = portion
 						return (

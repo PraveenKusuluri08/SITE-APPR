@@ -8,11 +8,11 @@ function Presentation({ onEdit, isEdit }) {
     <div>
       {
         isEdit ?
-          <IconButton onClick={onEdit} >
+          <IconButton onClick={onEdit}  >
             <EditIcon color="default" />
           </IconButton>
           :
-          <IconButton onClick={onEdit} >
+          <IconButton onClick={onEdit} color="primary"  style={{width:"20px",height:"20px",marginLeft:"1000px"}} >
             <AddCircleOutlineIcon color="default" />
           </IconButton>
       }

@@ -37,9 +37,9 @@ export default function Presentation(props) {
         // image={profile.imageURL}
       >
         <Avatar
-          alt={profile.personal.firstname}
+          // alt={profile.personal.firstname}
           className={cardStyles.avatar}
-          src={profile.imageURL}
+          // src={profile.imageURL}
         />
         <div className={classes.editoption}>
           {progress ? (
@@ -61,8 +61,8 @@ export default function Presentation(props) {
             <AvatarCrop handleChange={handleChange} useremail={profile.email} />
           )}
         </div>
-
-        <div className={cardStyles.content}>
+{/* 
+        <div>
           {profile.personal.firstname +
             " " +
             profile.personal.middlename +
@@ -70,7 +70,7 @@ export default function Presentation(props) {
             profile.personal.lastname}
           <br />
           {profile.uid}
-        </div>
+        </div> */}
       </CardMedia>
       <CardContent>
         <h2>Contact Information</h2>
@@ -80,10 +80,10 @@ export default function Presentation(props) {
         </div>
 
         <div className={cardStyles.details}>
-          <CallOutlinedIcon /> {"   " + profile.personal.phonenumber}
+          {/* <CallOutlinedIcon /> {"   " + profile.personal.phonenumber} */}
         </div>
 
-        <div className={cardStyles.details}>
+        {/* <div className={cardStyles.details}>
           <HomeOutlinedIcon />{" "}
           {"   " +
             profile.mailingaddress.line1 +
@@ -98,7 +98,7 @@ export default function Presentation(props) {
             profile.mailingaddress.country +
             " - " +
             profile.mailingaddress.zip}
-        </div>
+        </div> */}
       </CardContent>
     </Card>
   )

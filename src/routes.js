@@ -7,6 +7,8 @@ import EmployeeManagement from './services/EmployeeManagment/components/Employee
 import EmployeeInvitation from './services/EmployeeManagment/components/EmployeeInvitation/'
 import ProfileBuilderPage from './pages/ProfileBuilderPage'
 import ProfilePage from './pages/ProfilePage'
+import FormApage from './pages/FormApage'
+import FormBpage from './pages/FormBpage'
 const routes = [
     {
         path: "/formbuilder",
@@ -15,12 +17,12 @@ const routes = [
     },
     {
         path: "/formbuilder/formA",
-        component: <FormA />,
+        component: <FormApage />,
         moduleName: "form-a",
     },
     {
         path: "/formbuilder/formB",
-        component: <FormB />,
+        component: <FormBpage />,
         moduleName: "form-b",
     },
     {

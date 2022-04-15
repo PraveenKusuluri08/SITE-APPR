@@ -5,7 +5,6 @@ import { _set_state, loadProfileTemplate, loadEmployeeProfile } from "../../../.
 
 function Container(props) {
   const { employeeID, setState, state, _load_profile_template, _load_employee_profile } = props
-
   useEffect(() => {
     setState({
       employeeID
@@ -13,8 +12,7 @@ function Container(props) {
     _load_profile_template()
     _load_employee_profile(employeeID)
   }, [])
-
-
+  console.log("STATE_EMPLOYEE-------->",state)
 
   return (
     <div>
@@ -22,7 +20,6 @@ function Container(props) {
         state={state}
       />
     </div>
-
   )
 }
 

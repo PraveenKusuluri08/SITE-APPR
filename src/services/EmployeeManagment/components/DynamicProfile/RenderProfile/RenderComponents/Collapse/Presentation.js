@@ -23,18 +23,18 @@ function Presentation(props) {
   const emailDisable = sectionKey === "personal";
 
   const managers = [];
-  if (
-    access_modules.includes("employees-manager") ||
-    access_modules.includes("console-customization")
-  )
-    Object.values(names).forEach((employee) => {
-      if (
-        (employee.isSupervisor && employee.status === "active") ||
-        employee.designation === "admin"
-      ) {
-        managers.push(employee.uid);
-      }
-    });
+  // if (
+  //   access_modules.includes("employees-manager") ||
+  //   access_modules.includes("console-customization")
+  // )
+  //   Object.values(names).forEach((employee) => {
+  //     if (
+  //       (employee.isSupervisor && employee.status === "active") ||
+  //       employee.designation === "admin"
+  //     ) {
+  //       managers.push(employee.uid);
+  //     }
+  //   });
   return (
     <div>
       <Collapse in={editingSection.access_key === sectionKey}>
@@ -132,6 +132,8 @@ function Presentation(props) {
                 >
                   Update
                 </Button>
+                <br/>
+                <br/>
               </div>
             </form>
           </div>

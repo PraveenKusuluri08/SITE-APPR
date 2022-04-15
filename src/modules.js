@@ -6,17 +6,20 @@ import { IoMdAlarm, } from "react-icons/io";
 import { GoMailRead } from 'react-icons/go'
 import { ImProfile } from 'react-icons/im'
 import { AiOutlineForm } from 'react-icons/ai'
+import {AiOutlineUser} from 'react-icons/ai'
+// import {GrUserManager} from 'react-icons/Gr'
+
 const modules = [
   {
     text:"Profile",
-    icom:<FaTasks size={18} />,
+    icon:<AiOutlineUser size={18} />,
     link:"/profile",
     moduleName:"profile"
 
   },
   {
     text: "Employee Management",
-    icon: <FaTasks size={18} />,
+    icon: <GoMailRead size={18} />,
     link: "/employeemanagement",
     moduleName: "employee-management",
   },
@@ -33,6 +36,18 @@ const modules = [
     moduleName: 'form-builder'
   },
   {
+    text:"FormA",
+    icon:<AiOutlineForm size={18}/>,
+    link:"/formbuilder/formA",
+    moduleName:"FormA"
+  },
+  {
+    text:"FormB",
+    icon:<AiOutlineForm size={18}/>,
+    link:"/formbuilder/formB",
+    moduleName:"FormB"
+  }
+  , {
     text: "History",
     icon: <IoMdAlarm size={18} />,
     link: '/history',
