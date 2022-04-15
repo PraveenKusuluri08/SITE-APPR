@@ -8,17 +8,16 @@ import { ImProfile } from 'react-icons/im'
 import { AiOutlineForm } from 'react-icons/ai'
 const modules = [
   {
-    text:"Profile",
-    icom:<FaTasks size={18} />,
-    link:"/profile",
-    moduleName:"profile"
-
-  },
-  {
     text: "Employee Management",
     icon: <FaTasks size={18} />,
     link: "/employeemanagement",
     moduleName: "employee-management",
+  },
+  {
+    text: "Profile Builder",
+    icon: <ImProfile size={18} />,
+    link: "/profilebuilder",
+    moduleName: "profile-builder",
   },
   {
     text: "Employee Invitation",
@@ -37,7 +36,7 @@ const modules = [
     icon: <IoMdAlarm size={18} />,
     link: '/history',
     moduleName: 'history'
-  }
+  },
 ]
 
 export default modules;
