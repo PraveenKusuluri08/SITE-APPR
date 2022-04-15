@@ -5,10 +5,12 @@ import FormB from './services/Form/FormB'
 import History from './services/EmployeeManagment/components/History'
 import EmployeeManagement from './services/EmployeeManagment/components/EmployeeManagement/components'
 import EmployeeInvitation from './services/EmployeeManagment/components/EmployeeInvitation/'
+import ProfileBuilderPage from './pages/ProfileBuilderPage'
+import ProfilePage from './pages/ProfilePage'
 const routes = [
     {
         path: "/formbuilder",
-        component: <FormBuilder />,
+        component: <ProfileBuilderPage/>,
         moduleName: "form-builder",
     },
     {
@@ -41,5 +43,12 @@ const routes = [
         component: <History />,
         moduleName: "history",
     },
+    {
+        path:"/profile",
+        component:<ProfilePage/>,
+        moduleName:"employee-services-manager"
+    }
+
+   
 ]
 export default routes

@@ -28,7 +28,7 @@ class FormBuilder {
     const dbRef = db.collection(collectionName).doc(documentName);
     let documentData = {};
     Object.entries(inputs).forEach(([key, value]) => {
-      if (key === documentName || key === collectionName)
+      if (key !== documentName || key !== collectionName)
         documentData[key] = value;
     });
     return dbRef.set(
@@ -46,19 +46,22 @@ class FormBuilder {
    * docName:string, ->via sectionName
    * fields:string,->Via form builder frontend
    * docData:string
+   * index:sortPriority
+   * heading:
    */
   async _onFormBuilderUpdated(inputs) {
-    const { docName, fields } = inputs;
+    const { sectionName, fields } = inputs;
+    console.log("first", inputs);
     return db
       .collection("INVITATION_FORM_BUILDER")
-      .doc(docName)
+      .doc(sectionName)
       .set(
         {
           fields,
-          heading: inputs.heading,
-          id: inputs.id,
-          section: inputs.section,
-          index: inputs.index,
+          heading: inputs.sectionName,
+          id: inputs.access_key,
+          section: inputs.access_key,
+          index: inputs.sortPriority,
         },
         { merge: true }
       )
