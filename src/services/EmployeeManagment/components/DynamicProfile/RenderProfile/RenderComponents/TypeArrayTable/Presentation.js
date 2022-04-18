@@ -15,9 +15,18 @@ import {
   Paper
 } from '@material-ui/core';
 import Delete from "../Delete"
+import { styled } from '@mui/styles';
 import CustomRender from "../../../../../../../shared/components/valueRender"
 
 function Presentation(props) {
+
+  const StyledTableCell = styled(TableCell)({
+    color: 'white',
+    width: '5vw'
+  })
+  const StyledTableRow = styled(TableRow)({
+    background: 'linear-gradient(45deg, #280071 10%, #c42053 90%)',
+  });
   const { state, section, onDelete } = props
   const employeeProfile = {
     [section.access_key]: [],
@@ -32,9 +41,9 @@ function Presentation(props) {
   }, {})
   return (
     <div>
-      <div className="d-flex justify-content-between" >
-        <h3 style={{marginLeft:"9px",fontSize:"18px",fontWeight:"bold"}}>
-          <u>{section.sectionName}:</u>
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <h3>
+          {section.sectionName}:
         </h3>
         <div>
           <Edit isEdit={false} editingData={pushableData} index={employeeProfile[section.access_key].length} sectionKey={section.access_key} />
@@ -42,24 +51,23 @@ function Presentation(props) {
       </div>
       <TableContainer component={Paper}>
         <Table
-          size="small"
-          aria-label="a dense table"
+          Table sx={{ minWidth: 700 }} aria-label="customized table"
         >
           <TableHead>
-            <TableRow>
+            <StyledTableRow>
               {
                 section.fields.sort((a, b) => a.fieldPriority - b.fieldPriority).map(field => {
                   return (
-                    <TableCell width="40%" align="left">
+                    <StyledTableCell width="40%" align="left" style={{ color: 'white' }}>
                       {field.label}
-                    </TableCell>
+                    </StyledTableCell>
                   )
                 })
               }
-              <TableCell width="40%" align="left">
+              <StyledTableCell width="40%" align="left" style={{ color: 'white' }}>
                 Actions
-            </TableCell>
-            </TableRow>
+              </StyledTableCell>
+            </StyledTableRow>
           </TableHead>
           <TableBody>
             {
@@ -69,7 +77,8 @@ function Presentation(props) {
                     {
                       section.fields.sort((a, b) => a.fieldPriority - b.fieldPriority).map(field => {
                         return (
-                          <TableCell width="40%" align="left">
+
+                          <TableCell width="40%" align="left" style={{}}>
                             <CustomRender
                               type={field.type}
                               value={obj[field.name]}

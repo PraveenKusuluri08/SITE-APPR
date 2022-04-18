@@ -8,8 +8,8 @@ function Presentation(props) {
     return (
         <div>
 
-            <form>
-                <Card style={{ maxWidth: '550px', textAlign: 'center', margin: 'auto', padding: '30px' }} elevation="5">
+            <form >
+                <Card style={{ maxWidth: '550px', textAlign: 'center', padding: '30px', margin: 'auto' }} elevation="5">
                     <h1 style={{ textDecoration: 'underline' }}>Invite New Employee</h1>
                     <CardContent>
                         <div style={{ display: 'flex', flexDirection: 'column' }}>

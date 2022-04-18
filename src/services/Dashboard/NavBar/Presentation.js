@@ -16,7 +16,7 @@ import {
   Tooltip,
 } from "@material-ui/core";
 import modules from "../../../modules";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, BrowserRouter, Navigate, useNavigate } from "react-router-dom";
 import routes from "../../../routes";
 import {
   Menu as MenuIcon,
@@ -26,7 +26,7 @@ import {
 import { useTheme } from "@material-ui/core/styles";
 import useStyles from "../styles/navBar";
 import { Link } from "react-router-dom";
-export default function Presentation(props) {
+function Presentation(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -165,15 +165,21 @@ export default function Presentation(props) {
           })}
       </Drawer>
 
-      <Routes>
-        {routes.map(({ path, component, moduleName }) => {
-          if (
-            props.accessModules.includes(moduleName) ||
-            props.accessModules.includes("console-customization")
-          )
-            return <Route key={path} path={path} element={component} />;
-        })}
-      </Routes>
+      <main className={classes.content}>
+        <div className={classes.toolbar} />
+        <br />
+        <Routes>
+          {routes.map(({ path, component, moduleName }) => {
+            if (
+              props.accessModules.includes(moduleName) ||
+              props.accessModules.includes("console-customization")
+            )
+              return <Route key={path} path={path} element={component} />;
+          })}
+        </Routes>
+      </main>
     </div>
   );
 }
+
+export default Presentation;

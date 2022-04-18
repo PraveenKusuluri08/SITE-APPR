@@ -17,8 +17,15 @@ import {
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import CustomRender from "../../../../../../../shared/components/valueRender"
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
-
+import { styled } from '@mui/styles'
 function Presentation(props) {
+
+  const StyledTableRow = styled(TableRow)({
+    background: 'linear-gradient(45deg, #280071 10%, #c42053 90%)',
+  });
+  const StyledTableCell = styled(TableCell)({
+    color: 'white',
+  })
   const { state, section } = props
   const employeeProfile = {
     [section.access_key]: {},
@@ -26,9 +33,9 @@ function Presentation(props) {
   }
   return (
     <div>
-      <div className="d-flex justify-content-between" >
-        <h3 style={{marginLeft:"9px",fontSize:"18px",fontWeight:"bold"}}>
-          <u>{section.sectionName}:</u>
+      <div>
+        <h3 className="">
+          {section.sectionName}:
         </h3>
       </div>
       <TableContainer component={Paper}>
@@ -37,20 +44,20 @@ function Presentation(props) {
           aria-label="a dense table"
         >
           <TableHead>
-            <TableRow>
+            <StyledTableRow>
               {
                 section.fields.sort((a, b) => a.fieldPriority - b.fieldPriority).map(field => {
                   return (
-                    <TableCell width="40%" align="left">
+                    <StyledTableCell width="40%" align="left" style={{ color: 'white' }}>
                       {field.label}
-                    </TableCell>
+                    </StyledTableCell>
                   )
                 })
               }
-              <TableCell width="10%" align="left">
+              <StyledTableCell width="40%" align="left" style={{ color: 'white' }}>
                 Actions
-            </TableCell>
-            </TableRow>
+              </StyledTableCell>
+            </StyledTableRow>
           </TableHead>
           <TableBody>
             <TableRow>
@@ -73,9 +80,7 @@ function Presentation(props) {
           </TableBody>
         </Table>
       </TableContainer>
-    </div>
-
-  )
+    </div >)
 }
 
 
