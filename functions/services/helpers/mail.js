@@ -5,6 +5,7 @@ AWS.config.update({
   secretAccessKey: "6rPfvhPYEvftzvub5Lp539wzpBUhiXku3xQytBAK",
   region: "us-east-1",
 });
+
 const ses =new AWS.SES({apiVersion:"2010-12-01"})
 
 function mailToRecipent(user, subject, body) {

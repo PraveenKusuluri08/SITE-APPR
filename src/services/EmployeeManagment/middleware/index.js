@@ -26,7 +26,7 @@ export function getModules() {
     axios
       .get("/employee/modules")
       .then((response) => {
-        console.log("response",response)
+        console.log("response", response)
         return dispatch(
           modulesSuccess({
             accessModules: response.data,
@@ -78,25 +78,25 @@ export function getEmployees() {
 export function inviteEmployee(payload) {
   return (dispatch) => {
     dispatch(inviteEmployeeRequest())
-
-    const { email, firstname, lastname, dob, branch, phonenumber } = payload
-    if (!validate.checkEmail(email)) return errorMsg("Invalid email format")
-    if(!validate.checkNumber(phonenumber)) return errorMsg("Invalid phone number")
+    /***
+     * employeeInfo {
+     *  empName :string,
+     *  designation :string,
+     *  areaOfSpecialization :string,
+     *  
+     * }
+     */
+    const { employeeEmail, employeeInfo } = payload
+    if (!validate.checkEmail(employeeEmail)) return errorMsg("Invalid email format")
     waitingMsg("Invitation mail is being sent...")
     axios
       .post("/auth/inviteemployee", {
-        employeeEmail: email,
-        employeeInfo: {
-          branch,
-          dob,
-          firstname,
-          lastname,
-          phonenumber,
-        },
+        employeeEmail,
+        employeeInfo
       })
       .then((res) => {
         stopWaitMsg()
-        successMsg(email + " has been invited successfully")
+        successMsg(employeeEmail + " has been invited successfully")
         dispatch(inviteEmployeeSuccess())
       })
       .catch((err) => {

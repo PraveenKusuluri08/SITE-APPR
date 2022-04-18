@@ -4,33 +4,33 @@ import { onSignout } from "../../Authentication/middleware";
 import { getModules } from "../../EmployeeManagment/middleware";
 import Presentation from "./Presentation";
 import { useNavigate } from "react-router-dom";
-import { isLoaded,isEmpty} from "react-redux-firebase";
+import { isLoaded, isEmpty } from "react-redux-firebase";
 function Container(props) {
   const navigate = useNavigate();
   useEffect(() => {
     props._getModules();
   }, [props._getModules]);
-  console.log("props.modules", isLoaded(props.accessModules),isEmpty(props.accessModules));
-  console.log("firstAUTH",props.auth)
+  console.log("props.modules", isLoaded(props.accessModules), isEmpty(props.accessModules));
+  console.log("firstAUTH", props.auth)
 
-  const handleSignout=()=>{
+  const handleSignout = () => {
     props._onSignout()
     navigate("/lognin")
   }
 
-  if(isLoaded(props.accessModules)&& !isEmpty(props.accessModules)){
+  if (isLoaded(props.accessModules) && !isEmpty(props.accessModules)) {
     return (
       <div>
-      <Presentation onSignout={handleSignout} accessModules={props.accessModules} auth={props.auth}/>
-    </div>
-  );
-}else{
-  return "Loading"
-}
+        <Presentation onSignout={handleSignout} accessModules={props.accessModules} auth={props.auth} />
+      </div>
+    );
+  } else {
+    return "Loading"
+  }
 }
 const mapStateToProps = (state) => {
   return {
-    auth:state.firebase.auth,
+    auth: state.firebase.auth,
     accessModules: state.employee.modules.accessModules,
   };
 };

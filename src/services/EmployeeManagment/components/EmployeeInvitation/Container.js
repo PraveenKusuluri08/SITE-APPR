@@ -1,12 +1,22 @@
-import { React, useState } from 'react'
+import { React, useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux';
+import { inviteEmployee } from '../../middleware';
 import Presentation from './Presentation'
 function Container() {
+    const dispatch = useDispatch()
     const [state, setState] = useState({
-        employee_name: "",
+        empName: "",
         designation: "",
         department: "",
         email: '',
+        dataOfJoining: "",
+        areaOfSpecialization: "",
+        dob: ""
     });
+
+    // useEffect(() => {
+    //     dispatch(inviteEmployee(state))
+    // }, [])
     const handleChange = (e) => {
         setState({
             ...state,

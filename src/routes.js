@@ -9,10 +9,11 @@ import ProfileBuilderPage from './pages/ProfileBuilderPage'
 import ProfilePage from './pages/ProfilePage'
 import FormApage from './pages/FormApage'
 import FormBpage from './pages/FormBpage'
+import NavBar from './services/Dashboard/NavBar/'
 const routes = [
     {
         path: "/formbuilder",
-        component: <ProfileBuilderPage/>,
+        component: <ProfileBuilderPage />,
         moduleName: "form-builder",
     },
     {
@@ -31,12 +32,12 @@ const routes = [
         moduleName: "appraisal",
     },
     {
-        path: "/employee/management",
+        path: "/employeemanagement",
         component: <EmployeeManagement />,
         moduleName: "employee-management",
     },
     {
-        path: "/employee/invitation",
+        path: "/employeeinvitation",
         component: <EmployeeInvitation />,
         moduleName: "employee-invitation",
     },
@@ -46,11 +47,11 @@ const routes = [
         moduleName: "history",
     },
     {
-        path:"/profile",
-        component:<ProfilePage/>,
-        moduleName:"employee-services-manager"
+        path: "/profile",
+        component: <ProfilePage />,
+        moduleName: "employee-services-manager"
     }
 
-   
+
 ]
 export default routes

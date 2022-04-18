@@ -6,12 +6,9 @@ import "./App.css";
 import Navbar from "./services/Dashboard/NavBar/";
 import EmployeeRegisterPage from "./pages/EmployeeRegisterPage";
 function App(props) {
-  
   const { auth } = props;
   console.log("first", auth.uid);
- 
-
-  return auth.uid && auth.uid!==undefined? (
+  return auth.uid && auth.uid !== undefined ? (
     <AnimatePresence exitBeforeEnter>
       <BrowserRouter>
         <Navbar />

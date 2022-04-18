@@ -15,11 +15,8 @@ import {
   Menu,
   Tooltip,
 } from "@material-ui/core";
-
-import { connect } from "react-redux";
-import { onSignout } from "../../Authentication/middleware";
 import modules from "../../../modules";
-import { Routes, Route, BrowserRouter, Navigate, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import routes from "../../../routes";
 import {
   Menu as MenuIcon,
@@ -29,7 +26,7 @@ import {
 import { useTheme } from "@material-ui/core/styles";
 import useStyles from "../styles/navBar";
 import { Link } from "react-router-dom";
-function Presentation(props) {
+export default function Presentation(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -38,7 +35,7 @@ function Presentation(props) {
 
 
   const navigate = useNavigate()
- if(!props.auth.uid){
+  if (!props.auth.uid) {
     return navigate("/login");
   }
 
@@ -142,8 +139,8 @@ function Presentation(props) {
         {modules
           .filter(
             (ele) =>
-              (props.accessModules.includes(ele.moduleName) ||
-               props.accessModules.includes("console-customization") 
+            (props.accessModules.includes(ele.moduleName) ||
+              props.accessModules.includes("console-customization")
             )
           )
           .map((item) => {
@@ -168,21 +165,15 @@ function Presentation(props) {
           })}
       </Drawer>
 
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <br />
-        <Routes>
-          {routes.map(({ path, component, moduleName }) => {
-            if (
-              props.accessModules.includes(moduleName) ||
-              props.accessModules.includes("console-customization")
-            )
-              return <Route key={path} path={path} element={component} />;
-          })}
-        </Routes>
-      </main>
+      <Routes>
+        {routes.map(({ path, component, moduleName }) => {
+          if (
+            props.accessModules.includes(moduleName) ||
+            props.accessModules.includes("console-customization")
+          )
+            return <Route key={path} path={path} element={component} />;
+        })}
+      </Routes>
     </div>
   );
 }
-
-export default Presentation;
